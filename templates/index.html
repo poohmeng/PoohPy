@@ -1,0 +1,20 @@
+{%extends "base.html"%}
+{%block title%}home{%endblock%}
+
+
+
+
+
+{% block content %}
+    aaaa
+    {% for each_post in Posts %}
+        <p>{{ each_post.title }}</p>
+        <p>{{ each_post.created_at }}</p>
+        <p>{{ each_post.body }}aaa</p>
+
+    {% endfor %}
+{% endblock %}
+
+
+
+

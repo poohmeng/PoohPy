@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}contact{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="well">
+            <legend>contact</legend>
+            {% if form.errors %}
+                <p style="color: red;">
+                    Please correct the error{{ form.errors|pluralize }} below.
+                </p>
+            {% endif %}
+            <form class="form-horizontal" action="" method="POST">{% csrf_token %}
+                <div class="control-group">
+                    {{ form.subject.errors }}
+                    <label class="control-label">subject</label>
+                    <div class="controls">
+                        <input type="text" placeholder="Input a subject..." name="subject">
+                    </div>
+                    <br>
+                    {{ form.message.errors }}
+                    <label class="control-label">message</label>
+                    <div class="controls">
+                        <textarea rows="6" class="span6" name="message"></textarea>
+                    </div>
+                    <br>
+                    {{ form.from_email.errors }}
+                    <label class="control-label">Email</label>
+                    <div class="controls">
+                        <input type="text" placeholder="Input a email..." name="from_email">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button id="btn_submit" type="submit" class="btn btn-primary">提交内容</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}

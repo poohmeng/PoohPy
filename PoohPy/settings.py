@@ -1,10 +1,45 @@
 # Django settings for PoohPy project.
 
+from mongoengine import *
+DBNAME = 'test'
+connect(DBNAME)
+AUTHENTICATION_BACKENDS = (
+    'mongoengine.django.auth.MongoEngineBackend',
+)
+SESSION_ENGINE = 'mongoengine.django.sessions'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+DATABASE_HOST = '127.0.0.1'
+DATABASE_PORT = 27017
+DATABASE_USERNAME = None
+DATABASE_PASSWORD = None
+
+STR_NAME = 'Name'
+STR_ADMINS = 'Admin'
+
+myApp = {
+    '127.0.0.1:8000':{
+        STR_NAME: 'poohApp',
+        STR_ADMINS: 'admin',
+    }
+}
+
+#email_qq
+SERVER_EMAIL='721393470@qq.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = '721393470@qq.com'
+EMAIL_HOST_PASSWORD = 'mengmeng'
+
+
+
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+     ('poohmeng', '721393470@qq.com'),
 )
 
 MANAGERS = ADMINS
@@ -18,6 +53,11 @@ DATABASES = {
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
+    # 'default': {
+    #     'ENGINE': 'django_mongodb_engine',
+    #     'NAME': 'test'
+    # }
+
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
@@ -71,6 +111,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    '/Users/mengmeng/python/PoohPy/static',
 )
 
 # List of finder classes that know how to find static files in
@@ -97,6 +138,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+
+    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfResponseMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -107,7 +151,7 @@ ROOT_URLCONF = 'PoohPy.urls'
 WSGI_APPLICATION = 'PoohPy.wsgi.application'
 
 import os
-TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '..', 'templates').replace('\\','/'),)
+TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '..//', 'templates').replace('\\','/'),)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -119,7 +163,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'django.contrib.admindocs',
+    # 'djangotoolbox',
     'poohApp',
 )
 
